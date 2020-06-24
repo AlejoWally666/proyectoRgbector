@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: frgHead"></head>
+
+<body>
+	<div id="wrapper">
+	<nav th:replace="layout :: frgNav"></nav>
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 th:text="${title}" class="h3 mb-0 text-gray-800"></h1>
+					</div>
+
+					<hr />
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Tipo de usuario</th>
+								<th>Correo</th>
+								<th>Telefono</th>
+								<th>Estado</th>
+								<th><a class="btn btn-sm btn-success"
+									th:href="@{/usuarios/create}">Nuevo</a></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="a : ${usuarios}">
+								<td th:text="${a.nombre}"></td>
+								<td th:text="${a.tipoUsuario.nombre}"></td>
+								<td th:text="${a.correo}"></td>
+								<td th:text="${a.telefono}"></td>
+								<td th:text="${a.estado}"></td>
+								<td><a class="btn btn-sm btn-warning"
+									th:href="@{/usuarios/update/} + ${(a.idUsuario)}">&nbsp;Actualizar</a>
+									<a class="btn btn-sm btn-info"
+									th:href="@{/usuarios/retrieve/} + ${(a.idUsuario)}">&nbsp;Consultar</a></td>
+							</tr>
+						</tbody>
+					</table>
+
+
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+
+			<footer th:replace="layout :: frgFooter"></footer>
+
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+

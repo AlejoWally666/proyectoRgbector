@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: frgHead"></head>
+<body id="page-top">
+
+	<div id="wrapper">
+		<ul th:replace="layout :: frgNav"></ul>
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+
+					<!-- Page Heading -->
+
+					<div class="container">
+
+						<div class="card o-hidden border-0 shadow-lg my-5">
+							<div class="card-body p-0">
+								<!-- Nested Row within Card Body -->
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="p-5">
+											<div class="text-center">
+												<h1 th:text="${title}" class="h4 text-gray-900 mb-4"></h1>
+											</div>
+											<form class="user" th:action="@{/usuarios/save}"
+												th:object="${usuarios}" method="post">
+												<hr>
+												<div class="form-group row">
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<input type="text" class="form-control form-control-user"
+															th:field="*{nombre}" placeholder="Nombre">
+													</div>
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<select class="form-control" th:field=*{tipoUsuario.idTipoUsuario}>
+															<option value=0>--Seleccione Tipo de Usuario--</option>
+															<option th:each="us : ${tipoUsuario}" th:value="${us.idTipoUsuario}"
+																th:text="${us.nombre}"></option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<input type="number" class="form-control form-control-user"
+															th:field="*{telefono}" placeholder="Tel&eacute;fono">
+													</div>
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<input type="email" class="form-control form-control-user"
+															th:field="*{correo}" placeholder="Correo">
+													</div>
+												</div>
+												<div class="form-group row">
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<input type="text" class="form-control form-control-user"
+															th:field="*{nick}"
+															placeholder="Nick">
+													</div>
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<input type="password" class="form-control form-control-user"
+															th:field="*{clave}" placeholder="Clave">
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<label class="radio-inline"><input type="radio"
+															th:field="*{estado}" value="1" />&nbsp;Activo</label>
+													</div>
+													<div class="col-sm-6">
+														<label class="radio-inline"><input type="radio"
+															th:field="*{estado}" value="0" />&nbsp;Inactivo</label>
+													</div>
+												</div>
+												<hr> 	
+												<div class="form-group row">
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<input type="submit"
+															class="btn btn-success btn-user btn-block" value="Guardar"/>
+													</div>
+													<div class="col-sm-6 mb-3 mb-sm-0">
+														<a th:href="@{/usuarios/list}	"
+															class="btn btn-danger btn-user btn-block"> Cancelar </a>
+													</div>		
+												</div>
+												<input type="hidden" th:field="*{idUsuario}">
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+				<!-- /.container-fluid -->
+
+			</div>
+
+			<footer th:replace="layout :: frgFooter"></footer>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>
